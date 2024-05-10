@@ -1,0 +1,1 @@
+# FullStackOpen-Osa6-query-anecdotes
