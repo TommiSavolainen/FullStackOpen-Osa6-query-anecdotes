@@ -8,3 +8,7 @@ export const getAnecdotes = () => {
 export const createAnecdote = (newAnecdote) => {
     return axios.post(baseUrl, newAnecdote).then((response) => response.data);
 };
+
+export const voteAnecdote = (id, updatedAnecdote) => {
+    return axios.put(`${baseUrl}/${id}`, updatedAnecdote).then((response) => response.data);
+};
