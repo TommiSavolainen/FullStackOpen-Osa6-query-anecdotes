@@ -3,8 +3,10 @@ import AnecdoteForm from './components/AnecdoteForm'
 import Notification from './components/Notification'
 import axios from 'axios'
 import { getAnecdotes, voteAnecdote } from './requests'
+import { useNotification } from './components/NotificationProvider'
 
 const App = () => {
+  const { showMessage } = useNotification()
 
   const queryClient = useQueryClient()
 
@@ -21,6 +23,7 @@ const App = () => {
   )
 
   const handleVote = (anecdote) => {
+    showMessage('You voted for :' + anecdote.content)
     updateAnecdoteMutation.mutate(anecdote)
   }
 
@@ -38,19 +41,13 @@ const App = () => {
   }
 
   const anecdotes = result.data
-  // const anecdotes = [
-  //   {
-  //     "content": "If it hurts, do it more often",
-  //     "id": "47145",
-  //     "votes": 0
-  //   },
-  // ]
+
 
   return (
     <div>
       <h3>Anecdote app</h3>
     
-      <Notification />
+      <Notification/>
       <AnecdoteForm />
     
       {anecdotes.map(anecdote =>
